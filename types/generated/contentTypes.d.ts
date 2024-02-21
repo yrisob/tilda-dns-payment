@@ -362,45 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiDnsSettingDnsSetting extends Schema.SingleType {
-  collectionName: 'dns_settings';
-  info: {
-    singularName: 'dns-setting';
-    pluralName: 'dns-settings';
-    displayName: 'dns_setting';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    dns_payment_url: Attribute.String & Attribute.Required;
-    merchant_control_key: Attribute.String & Attribute.Required;
-    endpoint_id: Attribute.Integer & Attribute.Required;
-    currency_code: Attribute.Enumeration<['US', 'EUR']> &
-      Attribute.Required &
-      Attribute.DefaultTo<'EUR'>;
-    payment_method: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'sale-form'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::dns-setting.dns-setting',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::dns-setting.dns-setting',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -822,6 +783,408 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiDnsSettingDnsSetting extends Schema.SingleType {
+  collectionName: 'dns_settings';
+  info: {
+    singularName: 'dns-setting';
+    pluralName: 'dns-settings';
+    displayName: 'dns_setting';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    dns_payment_url: Attribute.String & Attribute.Required;
+    merchant_control_key: Attribute.String & Attribute.Required;
+    endpoint_id: Attribute.Integer & Attribute.Required;
+    currency_code: Attribute.Enumeration<['US', 'EUR']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'EUR'>;
+    payment_method: Attribute.String &
+      Attribute.Required &
+      Attribute.DefaultTo<'sale-form'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::dns-setting.dns-setting',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::dns-setting.dns-setting',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiOrderOrder extends Schema.CollectionType {
+  collectionName: 'orders';
+  info: {
+    singularName: 'order';
+    pluralName: 'orders';
+    displayName: 'order';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    first_name: Attribute.String & Attribute.Required;
+    last_name: Attribute.String & Attribute.Required;
+    phone: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 15;
+      }>;
+    email: Attribute.Email &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 50;
+      }>;
+    country: Attribute.Enumeration<
+      [
+        'AF',
+        'AL',
+        'DZ',
+        'AD',
+        'AO',
+        'AG',
+        'AR',
+        'AM',
+        'AU',
+        'AT',
+        'AZ',
+        'BS',
+        'BH',
+        'BD',
+        'BB',
+        'BY',
+        'BE',
+        'BZ',
+        'BJ',
+        'BT',
+        'BO',
+        'BA',
+        'BW',
+        'BR',
+        'BN',
+        'BG',
+        'BF',
+        'BI',
+        'CV',
+        'KH',
+        'CM',
+        'CA',
+        'CF',
+        'TD',
+        'CL',
+        'CN',
+        'CO',
+        'KM',
+        'CG',
+        'CD',
+        'CR',
+        'CI',
+        'HR',
+        'CU',
+        'CY',
+        'CZ',
+        'DK',
+        'DJ',
+        'DM',
+        'DO',
+        'EC',
+        'EG',
+        'SV',
+        'GQ',
+        'ER',
+        'EE',
+        'SZ',
+        'ET',
+        'FJ',
+        'FI',
+        'FR',
+        'GA',
+        'GM',
+        'GE',
+        'DE',
+        'GH',
+        'GR',
+        'GD',
+        'GT',
+        'GN',
+        'GW',
+        'GY',
+        'HT',
+        'HN',
+        'HU',
+        'IS',
+        'IN',
+        'ID',
+        'IR',
+        'IQ',
+        'IE',
+        'IL',
+        'IT',
+        'JM',
+        'JP',
+        'JO',
+        'KZ',
+        'KE',
+        'KI',
+        'KP',
+        'KR',
+        'KW',
+        'KG',
+        'LA',
+        'LV',
+        'LB',
+        'LS',
+        'LR',
+        'LY',
+        'LI',
+        'LT',
+        'LU',
+        'MG',
+        'MW',
+        'MY',
+        'MV',
+        'ML',
+        'MT',
+        'MH',
+        'MR',
+        'MU',
+        'MX',
+        'FM',
+        'MD',
+        'MC',
+        'MN',
+        'ME',
+        'MA',
+        'MZ',
+        'MM',
+        'NA',
+        'NR',
+        'NP',
+        'NL',
+        'NZ',
+        'NI',
+        'NE',
+        'NG',
+        'MK',
+        'NO',
+        'OM',
+        'PK',
+        'PW',
+        'PA',
+        'PG',
+        'PY',
+        'PE',
+        'PH',
+        'PL',
+        'PT',
+        'QA',
+        'RO',
+        'RU',
+        'RW',
+        'KN',
+        'LC',
+        'VC',
+        'WS',
+        'SM',
+        'ST',
+        'SA',
+        'SN',
+        'RS',
+        'SC',
+        'SL',
+        'SG',
+        'SK',
+        'SI',
+        'SB',
+        'SO',
+        'ZA',
+        'SS',
+        'ES',
+        'LK',
+        'SD',
+        'SR',
+        'SE',
+        'CH',
+        'SY',
+        'TJ',
+        'TZ',
+        'TH',
+        'TL',
+        'TG',
+        'TO',
+        'TT',
+        'TN',
+        'TR',
+        'TM',
+        'TV',
+        'UG',
+        'UA',
+        'AE',
+        'GB',
+        'US',
+        'UY',
+        'UZ',
+        'VU',
+        'VE',
+        'VN',
+        'YE',
+        'ZM',
+        'ZW'
+      ]
+    >;
+    city: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 50;
+      }>;
+    zip_code: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 10;
+      }>;
+    address1: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 50;
+      }>;
+    ipaddress: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 45;
+      }>;
+    dns_payment_id: Attribute.String;
+    status: Attribute.Enumeration<
+      ['unprocessed', 'pending', 'success', 'failed']
+    > &
+      Attribute.Required &
+      Attribute.DefaultTo<'unprocessed'>;
+    payment: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'api::payment.payment'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiOrderItemOrderItem extends Schema.CollectionType {
+  collectionName: 'order_items';
+  info: {
+    singularName: 'order-item';
+    pluralName: 'order-items';
+    displayName: 'order_item';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    quantity: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      >;
+    amount: Attribute.Decimal &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      >;
+    externalid: Attribute.String & Attribute.Required;
+    price: Attribute.String;
+    sku: Attribute.String;
+    payment: Attribute.Relation<
+      'api::order-item.order-item',
+      'manyToOne',
+      'api::payment.payment'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::order-item.order-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::order-item.order-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPaymentPayment extends Schema.CollectionType {
+  collectionName: 'payments';
+  info: {
+    singularName: 'payment';
+    pluralName: 'payments';
+    displayName: 'payment';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    sys: Attribute.String & Attribute.Required & Attribute.DefaultTo<'none'>;
+    systranid: Attribute.String & Attribute.Required & Attribute.DefaultTo<'0'>;
+    orderid: Attribute.String & Attribute.Required;
+    formid: Attribute.String;
+    formname: Attribute.String & Attribute.Required;
+    products: Attribute.Relation<
+      'api::payment.payment',
+      'oneToMany',
+      'api::order-item.order-item'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::payment.payment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::payment.payment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -832,7 +1195,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::dns-setting.dns-setting': ApiDnsSettingDnsSetting;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -841,6 +1203,10 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::dns-setting.dns-setting': ApiDnsSettingDnsSetting;
+      'api::order.order': ApiOrderOrder;
+      'api::order-item.order-item': ApiOrderItemOrderItem;
+      'api::payment.payment': ApiPaymentPayment;
     }
   }
 }
