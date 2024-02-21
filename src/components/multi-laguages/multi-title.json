@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_multi_laguages_multi_titles",
+  "info": {
+    "displayName": "multi_title",
+    "icon": "earth"
+  },
+  "options": {},
+  "attributes": {
+    "en": {
+      "type": "string"
+    },
+    "ja": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_multi_laguages_multi_descriptions",
+  "info": {
+    "displayName": "multi_description",
+    "icon": "earth"
+  },
+  "options": {},
+  "attributes": {
+    "en": {
+      "type": "blocks"
+    },
+    "ja": {
+      "type": "blocks"
+    }
+  }
+}

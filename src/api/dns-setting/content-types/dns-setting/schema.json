@@ -1,0 +1,42 @@
+{
+  "kind": "singleType",
+  "collectionName": "dns_settings",
+  "info": {
+    "singularName": "dns-setting",
+    "pluralName": "dns-settings",
+    "displayName": "dns_setting",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "dns_payment_url": {
+      "type": "string",
+      "required": true
+    },
+    "merchant_control_key": {
+      "type": "string",
+      "required": true
+    },
+    "endpoint_id": {
+      "type": "integer",
+      "required": true
+    },
+    "currency_code": {
+      "type": "enumeration",
+      "enum": [
+        "US",
+        "EUR"
+      ],
+      "default": "EUR",
+      "required": true
+    },
+    "payment_method": {
+      "type": "string",
+      "default": "sale-form",
+      "required": true
+    }
+  }
+}
