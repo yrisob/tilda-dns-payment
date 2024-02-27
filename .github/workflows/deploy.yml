@@ -23,7 +23,7 @@ jobs:
         run: rm -f .env
       - name: "Create env file"
         run: |
-          echo "$ENV" > .env
+          echo "${{ vars.ENV}}" > .env
       - name: copy project into server
         run: rsync -e "ssh -i $HOME/.ssh/id_rsa -vvv -o StrictHostKeyChecking=no" --archive --compress --update . root@116.203.49.31:/home/dev/dns_payment
       - name: stop docker-compose
