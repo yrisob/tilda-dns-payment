@@ -33,18 +33,8 @@ export interface AdminPermission extends Schema.CollectionType {
     role: Attribute.Relation<'admin::permission', 'manyToOne', 'admin::role'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'admin::permission',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'admin::permission',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
+    createdBy: Attribute.Relation<'admin::permission', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'admin::permission', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
@@ -89,19 +79,14 @@ export interface AdminUser extends Schema.CollectionType {
       }>;
     resetPasswordToken: Attribute.String & Attribute.Private;
     registrationToken: Attribute.String & Attribute.Private;
-    isActive: Attribute.Boolean &
-      Attribute.Private &
-      Attribute.DefaultTo<false>;
-    roles: Attribute.Relation<'admin::user', 'manyToMany', 'admin::role'> &
-      Attribute.Private;
+    isActive: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;
+    roles: Attribute.Relation<'admin::user', 'manyToMany', 'admin::role'> & Attribute.Private;
     blocked: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;
     preferedLanguage: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'admin::user', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'admin::user', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
+    createdBy: Attribute.Relation<'admin::user', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'admin::user', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
@@ -137,17 +122,11 @@ export interface AdminRole extends Schema.CollectionType {
       }>;
     description: Attribute.String;
     users: Attribute.Relation<'admin::role', 'manyToMany', 'admin::user'>;
-    permissions: Attribute.Relation<
-      'admin::role',
-      'oneToMany',
-      'admin::permission'
-    >;
+    permissions: Attribute.Relation<'admin::role', 'oneToMany', 'admin::permission'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'admin::role', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'admin::role', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
+    createdBy: Attribute.Relation<'admin::role', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'admin::role', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
@@ -189,27 +168,13 @@ export interface AdminApiToken extends Schema.CollectionType {
         minLength: 1;
       }>;
     lastUsedAt: Attribute.DateTime;
-    permissions: Attribute.Relation<
-      'admin::api-token',
-      'oneToMany',
-      'admin::api-token-permission'
-    >;
+    permissions: Attribute.Relation<'admin::api-token', 'oneToMany', 'admin::api-token-permission'>;
     expiresAt: Attribute.DateTime;
     lifespan: Attribute.BigInteger;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'admin::api-token',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'admin::api-token',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
+    createdBy: Attribute.Relation<'admin::api-token', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'admin::api-token', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
@@ -236,25 +201,11 @@ export interface AdminApiTokenPermission extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         minLength: 1;
       }>;
-    token: Attribute.Relation<
-      'admin::api-token-permission',
-      'manyToOne',
-      'admin::api-token'
-    >;
+    token: Attribute.Relation<'admin::api-token-permission', 'manyToOne', 'admin::api-token'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'admin::api-token-permission',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'admin::api-token-permission',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
+    createdBy: Attribute.Relation<'admin::api-token-permission', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'admin::api-token-permission', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
@@ -293,27 +244,13 @@ export interface AdminTransferToken extends Schema.CollectionType {
         minLength: 1;
       }>;
     lastUsedAt: Attribute.DateTime;
-    permissions: Attribute.Relation<
-      'admin::transfer-token',
-      'oneToMany',
-      'admin::transfer-token-permission'
-    >;
+    permissions: Attribute.Relation<'admin::transfer-token', 'oneToMany', 'admin::transfer-token-permission'>;
     expiresAt: Attribute.DateTime;
     lifespan: Attribute.BigInteger;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'admin::transfer-token',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'admin::transfer-token',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
+    createdBy: Attribute.Relation<'admin::transfer-token', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'admin::transfer-token', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
@@ -340,25 +277,11 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         minLength: 1;
       }>;
-    token: Attribute.Relation<
-      'admin::transfer-token-permission',
-      'manyToOne',
-      'admin::transfer-token'
-    >;
+    token: Attribute.Relation<'admin::transfer-token-permission', 'manyToOne', 'admin::transfer-token'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'admin::transfer-token-permission',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'admin::transfer-token-permission',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
+    createdBy: Attribute.Relation<'admin::transfer-token-permission', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'admin::transfer-token-permission', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
@@ -394,12 +317,7 @@ export interface PluginUploadFile extends Schema.CollectionType {
     provider: Attribute.String & Attribute.Required;
     provider_metadata: Attribute.JSON;
     related: Attribute.Relation<'plugin::upload.file', 'morphToMany'>;
-    folder: Attribute.Relation<
-      'plugin::upload.file',
-      'manyToOne',
-      'plugin::upload.folder'
-    > &
-      Attribute.Private;
+    folder: Attribute.Relation<'plugin::upload.file', 'manyToOne', 'plugin::upload.folder'> & Attribute.Private;
     folderPath: Attribute.String &
       Attribute.Required &
       Attribute.Private &
@@ -411,18 +329,8 @@ export interface PluginUploadFile extends Schema.CollectionType {
       >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::upload.file',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::upload.file',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
+    createdBy: Attribute.Relation<'plugin::upload.file', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'plugin::upload.file', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
@@ -451,21 +359,9 @@ export interface PluginUploadFolder extends Schema.CollectionType {
         number
       >;
     pathId: Attribute.Integer & Attribute.Required & Attribute.Unique;
-    parent: Attribute.Relation<
-      'plugin::upload.folder',
-      'manyToOne',
-      'plugin::upload.folder'
-    >;
-    children: Attribute.Relation<
-      'plugin::upload.folder',
-      'oneToMany',
-      'plugin::upload.folder'
-    >;
-    files: Attribute.Relation<
-      'plugin::upload.folder',
-      'oneToMany',
-      'plugin::upload.file'
-    >;
+    parent: Attribute.Relation<'plugin::upload.folder', 'manyToOne', 'plugin::upload.folder'>;
+    children: Attribute.Relation<'plugin::upload.folder', 'oneToMany', 'plugin::upload.folder'>;
+    files: Attribute.Relation<'plugin::upload.folder', 'oneToMany', 'plugin::upload.file'>;
     path: Attribute.String &
       Attribute.Required &
       Attribute.SetMinMax<
@@ -476,18 +372,8 @@ export interface PluginUploadFolder extends Schema.CollectionType {
       >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::upload.folder',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::upload.folder',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
+    createdBy: Attribute.Relation<'plugin::upload.folder', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'plugin::upload.folder', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
@@ -521,23 +407,12 @@ export interface PluginContentReleasesRelease extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::content-releases.release',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::content-releases.release',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
+    createdBy: Attribute.Relation<'plugin::content-releases.release', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'plugin::content-releases.release', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
-export interface PluginContentReleasesReleaseAction
-  extends Schema.CollectionType {
+export interface PluginContentReleasesReleaseAction extends Schema.CollectionType {
   collectionName: 'strapi_release_actions';
   info: {
     singularName: 'release-action';
@@ -557,10 +432,7 @@ export interface PluginContentReleasesReleaseAction
   };
   attributes: {
     type: Attribute.Enumeration<['publish', 'unpublish']> & Attribute.Required;
-    entry: Attribute.Relation<
-      'plugin::content-releases.release-action',
-      'morphToOne'
-    >;
+    entry: Attribute.Relation<'plugin::content-releases.release-action', 'morphToOne'>;
     contentType: Attribute.String & Attribute.Required;
     locale: Attribute.String;
     release: Attribute.Relation<
@@ -570,17 +442,9 @@ export interface PluginContentReleasesReleaseAction
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::content-releases.release-action',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'plugin::content-releases.release-action', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::content-releases.release-action',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'plugin::content-releases.release-action', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -617,23 +481,12 @@ export interface PluginI18NLocale extends Schema.CollectionType {
     code: Attribute.String & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::i18n.locale',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::i18n.locale',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
+    createdBy: Attribute.Relation<'plugin::i18n.locale', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'plugin::i18n.locale', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
-export interface PluginUsersPermissionsPermission
-  extends Schema.CollectionType {
+export interface PluginUsersPermissionsPermission extends Schema.CollectionType {
   collectionName: 'up_permissions';
   info: {
     name: 'permission';
@@ -652,24 +505,12 @@ export interface PluginUsersPermissionsPermission
   };
   attributes: {
     action: Attribute.String & Attribute.Required;
-    role: Attribute.Relation<
-      'plugin::users-permissions.permission',
-      'manyToOne',
-      'plugin::users-permissions.role'
-    >;
+    role: Attribute.Relation<'plugin::users-permissions.permission', 'manyToOne', 'plugin::users-permissions.role'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::users-permissions.permission',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'plugin::users-permissions.permission', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::users-permissions.permission',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'plugin::users-permissions.permission', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -704,25 +545,11 @@ export interface PluginUsersPermissionsRole extends Schema.CollectionType {
       'oneToMany',
       'plugin::users-permissions.permission'
     >;
-    users: Attribute.Relation<
-      'plugin::users-permissions.role',
-      'oneToMany',
-      'plugin::users-permissions.user'
-    >;
+    users: Attribute.Relation<'plugin::users-permissions.role', 'oneToMany', 'plugin::users-permissions.user'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::users-permissions.role',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::users-permissions.role',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
+    createdBy: Attribute.Relation<'plugin::users-permissions.role', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'plugin::users-permissions.role', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
@@ -761,24 +588,81 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     confirmationToken: Attribute.String & Attribute.Private;
     confirmed: Attribute.Boolean & Attribute.DefaultTo<false>;
     blocked: Attribute.Boolean & Attribute.DefaultTo<false>;
-    role: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'manyToOne',
-      'plugin::users-permissions.role'
+    role: Attribute.Relation<'plugin::users-permissions.user', 'manyToOne', 'plugin::users-permissions.role'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'plugin::users-permissions.user', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'plugin::users-permissions.user', 'oneToOne', 'admin::user'> & Attribute.Private;
+  };
+}
+
+export interface ApiDnsPaymentDnsPayment extends Schema.CollectionType {
+  collectionName: 'dns_payments';
+  info: {
+    singularName: 'dns-payment';
+    pluralName: 'dns-payments';
+    displayName: 'dns_payment';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    serial_number: Attribute.UID;
+    merchant_order: Attribute.String & Attribute.Required;
+    client_orderid: Attribute.String;
+    orderid: Attribute.String & Attribute.Required;
+    status: Attribute.String & Attribute.Required;
+    amount: Attribute.String & Attribute.Required;
+    currency: Attribute.String & Attribute.Required;
+    error_message: Attribute.String;
+    control: Attribute.String & Attribute.Required;
+    email: Attribute.String;
+    data: Attribute.JSON;
+    dns_payment_link: Attribute.Relation<
+      'api::dns-payment.dns-payment',
+      'oneToOne',
+      'api::dns-payment-link.dns-payment-link'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::users-permissions.user',
+    createdBy: Attribute.Relation<'api::dns-payment.dns-payment', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'api::dns-payment.dns-payment', 'oneToOne', 'admin::user'> & Attribute.Private;
+  };
+}
+
+export interface ApiDnsPaymentLinkDnsPaymentLink extends Schema.CollectionType {
+  collectionName: 'dns_payment_links';
+  info: {
+    singularName: 'dns-payment-link';
+    pluralName: 'dns-payment-links';
+    displayName: 'dns_payment_link';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    type: Attribute.String;
+    serial_number: Attribute.String;
+    merchant_order_id: Attribute.String;
+    paynet_order_id: Attribute.String & Attribute.Unique;
+    redirect_url: Attribute.String;
+    payer_address: Attribute.Relation<
+      'api::dns-payment-link.dns-payment-link',
       'oneToOne',
-      'admin::user'
-    > &
+      'api::payer-address.payer-address'
+    >;
+    dns_payment: Attribute.Relation<
+      'api::dns-payment-link.dns-payment-link',
+      'oneToOne',
+      'api::dns-payment.dns-payment'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::dns-payment-link.dns-payment-link', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::dns-payment-link.dns-payment-link', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -798,390 +682,81 @@ export interface ApiDnsSettingDnsSetting extends Schema.SingleType {
     dns_payment_url: Attribute.String & Attribute.Required;
     merchant_control_key: Attribute.String & Attribute.Required;
     endpoint_id: Attribute.Integer & Attribute.Required;
-    currency_code: Attribute.Enumeration<['US', 'EUR']> &
-      Attribute.Required &
-      Attribute.DefaultTo<'EUR'>;
-    payment_method: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'sale-form'>;
+    currency_code: Attribute.Enumeration<['US', 'EUR']> & Attribute.Required & Attribute.DefaultTo<'EUR'>;
+    payment_method: Attribute.String & Attribute.Required & Attribute.DefaultTo<'sale-form'>;
+    billing_address: Attribute.String & Attribute.Required;
+    redirect_success_url: Attribute.String;
+    server_callback_url: Attribute.String & Attribute.Required;
+    redirect_failed_url: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::dns-setting.dns-setting',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::dns-setting.dns-setting',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
+    createdBy: Attribute.Relation<'api::dns-setting.dns-setting', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'api::dns-setting.dns-setting', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
-export interface ApiOrderOrder extends Schema.CollectionType {
-  collectionName: 'orders';
+export interface ApiPayerAddressPayerAddress extends Schema.CollectionType {
+  collectionName: 'payer_addresses';
   info: {
-    singularName: 'order';
-    pluralName: 'orders';
-    displayName: 'order';
+    singularName: 'payer-address';
+    pluralName: 'payer-addresses';
+    displayName: 'payer_address';
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     first_name: Attribute.String & Attribute.Required;
     last_name: Attribute.String & Attribute.Required;
-    phone: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 15;
-      }>;
-    email: Attribute.Email &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 50;
-      }>;
-    country: Attribute.Enumeration<
-      [
-        'AF',
-        'AL',
-        'DZ',
-        'AD',
-        'AO',
-        'AG',
-        'AR',
-        'AM',
-        'AU',
-        'AT',
-        'AZ',
-        'BS',
-        'BH',
-        'BD',
-        'BB',
-        'BY',
-        'BE',
-        'BZ',
-        'BJ',
-        'BT',
-        'BO',
-        'BA',
-        'BW',
-        'BR',
-        'BN',
-        'BG',
-        'BF',
-        'BI',
-        'CV',
-        'KH',
-        'CM',
-        'CA',
-        'CF',
-        'TD',
-        'CL',
-        'CN',
-        'CO',
-        'KM',
-        'CG',
-        'CD',
-        'CR',
-        'CI',
-        'HR',
-        'CU',
-        'CY',
-        'CZ',
-        'DK',
-        'DJ',
-        'DM',
-        'DO',
-        'EC',
-        'EG',
-        'SV',
-        'GQ',
-        'ER',
-        'EE',
-        'SZ',
-        'ET',
-        'FJ',
-        'FI',
-        'FR',
-        'GA',
-        'GM',
-        'GE',
-        'DE',
-        'GH',
-        'GR',
-        'GD',
-        'GT',
-        'GN',
-        'GW',
-        'GY',
-        'HT',
-        'HN',
-        'HU',
-        'IS',
-        'IN',
-        'ID',
-        'IR',
-        'IQ',
-        'IE',
-        'IL',
-        'IT',
-        'JM',
-        'JP',
-        'JO',
-        'KZ',
-        'KE',
-        'KI',
-        'KP',
-        'KR',
-        'KW',
-        'KG',
-        'LA',
-        'LV',
-        'LB',
-        'LS',
-        'LR',
-        'LY',
-        'LI',
-        'LT',
-        'LU',
-        'MG',
-        'MW',
-        'MY',
-        'MV',
-        'ML',
-        'MT',
-        'MH',
-        'MR',
-        'MU',
-        'MX',
-        'FM',
-        'MD',
-        'MC',
-        'MN',
-        'ME',
-        'MA',
-        'MZ',
-        'MM',
-        'NA',
-        'NR',
-        'NP',
-        'NL',
-        'NZ',
-        'NI',
-        'NE',
-        'NG',
-        'MK',
-        'NO',
-        'OM',
-        'PK',
-        'PW',
-        'PA',
-        'PG',
-        'PY',
-        'PE',
-        'PH',
-        'PL',
-        'PT',
-        'QA',
-        'RO',
-        'RU',
-        'RW',
-        'KN',
-        'LC',
-        'VC',
-        'WS',
-        'SM',
-        'ST',
-        'SA',
-        'SN',
-        'RS',
-        'SC',
-        'SL',
-        'SG',
-        'SK',
-        'SI',
-        'SB',
-        'SO',
-        'ZA',
-        'SS',
-        'ES',
-        'LK',
-        'SD',
-        'SR',
-        'SE',
-        'CH',
-        'SY',
-        'TJ',
-        'TZ',
-        'TH',
-        'TL',
-        'TG',
-        'TO',
-        'TT',
-        'TN',
-        'TR',
-        'TM',
-        'TV',
-        'UG',
-        'UA',
-        'AE',
-        'GB',
-        'US',
-        'UY',
-        'UZ',
-        'VU',
-        'VE',
-        'VN',
-        'YE',
-        'ZM',
-        'ZW'
-      ]
-    >;
-    city: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 50;
-      }>;
-    zip_code: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 10;
-      }>;
-    address1: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 50;
-      }>;
-    ipaddress: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 45;
-      }>;
-    dns_payment_id: Attribute.String;
-    status: Attribute.Enumeration<
-      ['unprocessed', 'pending', 'success', 'failed']
-    > &
-      Attribute.Required &
-      Attribute.DefaultTo<'unprocessed'>;
-    payment: Attribute.Relation<
-      'api::order.order',
-      'oneToOne',
-      'api::payment.payment'
-    >;
+    country_code: Attribute.String & Attribute.Required;
+    city: Attribute.String & Attribute.Required;
+    zip_code: Attribute.String & Attribute.Required;
+    address1: Attribute.String;
+    tilda_order: Attribute.Relation<'api::payer-address.payer-address', 'oneToOne', 'api::tilda-order.tilda-order'>;
+    email: Attribute.String & Attribute.Required;
+    phone: Attribute.String;
+    state: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::order.order',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::order.order',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
+    createdBy: Attribute.Relation<'api::payer-address.payer-address', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'api::payer-address.payer-address', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
-export interface ApiOrderItemOrderItem extends Schema.CollectionType {
-  collectionName: 'order_items';
+export interface ApiTildaOrderTildaOrder extends Schema.CollectionType {
+  collectionName: 'tilda_orders';
   info: {
-    singularName: 'order-item';
-    pluralName: 'order-items';
-    displayName: 'order_item';
+    singularName: 'tilda-order';
+    pluralName: 'tilda-orders';
+    displayName: 'tilda_order';
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
-    name: Attribute.String;
-    quantity: Attribute.Integer &
-      Attribute.Required &
-      Attribute.SetMinMax<
-        {
-          min: 0;
-        },
-        number
-      >;
-    amount: Attribute.Decimal &
-      Attribute.SetMinMax<
-        {
-          min: 0;
-        },
-        number
-      >;
-    externalid: Attribute.String & Attribute.Required;
-    price: Attribute.String;
-    sku: Attribute.String;
-    payment: Attribute.Relation<
-      'api::order-item.order-item',
-      'manyToOne',
-      'api::payment.payment'
-    >;
+    order_id: Attribute.UID;
+    login: Attribute.String & Attribute.Required;
+    full_name: Attribute.String;
+    currency_code: Attribute.Enumeration<['EUR', 'USD', 'RUB']> & Attribute.Required & Attribute.DefaultTo<'EUR'>;
+    lang: Attribute.String;
+    country: Attribute.String;
+    isTest: Attribute.String;
+    description: Attribute.String;
+    amount: Attribute.String;
+    order_created: Attribute.String;
+    email: Attribute.String & Attribute.Required;
+    phone: Attribute.String;
+    sign: Attribute.String & Attribute.Required;
+    products: Attribute.JSON & Attribute.Required;
+    ipaddress: Attribute.String;
+    order_from: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::order-item.order-item',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::order-item.order-item',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiPaymentPayment extends Schema.CollectionType {
-  collectionName: 'payments';
-  info: {
-    singularName: 'payment';
-    pluralName: 'payments';
-    displayName: 'payment';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    sys: Attribute.String & Attribute.Required & Attribute.DefaultTo<'none'>;
-    systranid: Attribute.String & Attribute.Required & Attribute.DefaultTo<'0'>;
-    orderid: Attribute.String & Attribute.Required;
-    formid: Attribute.String;
-    formname: Attribute.String & Attribute.Required;
-    products: Attribute.Relation<
-      'api::payment.payment',
-      'oneToMany',
-      'api::order-item.order-item'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::payment.payment',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::payment.payment',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
+    createdBy: Attribute.Relation<'api::tilda-order.tilda-order', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'api::tilda-order.tilda-order', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
@@ -1203,10 +778,11 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::dns-payment.dns-payment': ApiDnsPaymentDnsPayment;
+      'api::dns-payment-link.dns-payment-link': ApiDnsPaymentLinkDnsPaymentLink;
       'api::dns-setting.dns-setting': ApiDnsSettingDnsSetting;
-      'api::order.order': ApiOrderOrder;
-      'api::order-item.order-item': ApiOrderItemOrderItem;
-      'api::payment.payment': ApiPaymentPayment;
+      'api::payer-address.payer-address': ApiPayerAddressPayerAddress;
+      'api::tilda-order.tilda-order': ApiTildaOrderTildaOrder;
     }
   }
 }

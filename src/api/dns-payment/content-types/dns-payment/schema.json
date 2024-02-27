@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dns_payments",
+  "info": {
+    "singularName": "dns-payment",
+    "pluralName": "dns-payments",
+    "displayName": "dns_payment",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "serial_number": {
+      "type": "uid"
+    },
+    "merchant_order": {
+      "type": "string",
+      "required": true
+    },
+    "client_orderid": {
+      "type": "string"
+    },
+    "orderid": {
+      "type": "string",
+      "required": true
+    },
+    "status": {
+      "type": "string",
+      "required": true
+    },
+    "amount": {
+      "type": "string",
+      "required": true
+    },
+    "currency": {
+      "type": "string",
+      "required": true
+    },
+    "error_message": {
+      "type": "string"
+    },
+    "control": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "string"
+    },
+    "data": {
+      "type": "json"
+    },
+    "dns_payment_link": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dns-payment-link.dns-payment-link",
+      "inversedBy": "dns_payment"
+    }
+  }
+}

@@ -1,30 +1,38 @@
 {
-  "first_name": "John",
-  "last_name": "Smith",
-  "phone": "+995598206515",
-  "email": "yrisob@gmail.com",
+  "login": "DNSTest",
+  "full_name": "Sobolev Yura",
+  "currency_code": "EUR",
+  "lang": "en",
   "country": "GE",
-  "city": "Tbilisi",
-  "zip_code": "0179",
-  "address1": "Mtskheta steet 48",
-  "currency": "EUR",
-  "control": "280BD6A6-D145-456C-9211-3D2D77AACE13",
-  "payment": {
-    "sys": "none",
-    "systranid": "0",
-    "orderid": "1990537602",
-    "products": [
-      {
-        "name": "Mops Theme",
-        "quantity": 1,
-        "amount": 35,
-        "externalid": "vohLPNbXIgXFN5B41UF6",
-        "price": "35",
-        "sku": "ANIMAL3"
-      }
-    ],
-    "amount": "35"
+  "isTest": "1",
+  "https://a3b2-188-120-97-86": {
+    "ngrok-free": {
+      "app/api/test-order": "https://forms.tildacdn.com/payment/custom/ps1610861/"
+    }
   },
-  "formid": "form708602692",
-  "formname": "Cart"
+  "order_id": "8660865_1275820156",
+  "description": "FoxDog Theme (ANIMAL2); E-comm 1 (ECOMM1)",
+  "amount": "10300",
+  "order_created": "2024-02-26T12:54:10+03:00",
+  "email": "yuri@airiveria.com",
+  "phone": "+995598206515",
+  "products": [
+    {
+      "itemId": 1,
+      "name": "FoxDog Theme",
+      "quantity": 1,
+      "price": 5500,
+      "amount": 5500,
+      "media": "https:\\/\\/static.tildacdn.com\\/stor3766-3063-4432-b238-303935376635\\/12288443.png"
+    },
+    {
+      "itemId": 2,
+      "name": "E-comm 1",
+      "quantity": 1,
+      "price": 4800,
+      "amount": 4800,
+      "media": "https:\\/\\/static.tildacdn.com\\/stor3336-3930-4165-a265-616637303366\\/82437426.png"
+    }
+  ],
+  "sign": "5e6e098a44d5be5fbfbd78e5687b34273a7dffa2"
 }

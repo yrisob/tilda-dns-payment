@@ -1,0 +1,76 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tilda_orders",
+  "info": {
+    "singularName": "tilda-order",
+    "pluralName": "tilda-orders",
+    "displayName": "tilda_order",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "order_id": {
+      "type": "uid"
+    },
+    "login": {
+      "type": "string",
+      "required": true
+    },
+    "full_name": {
+      "type": "string",
+      "required": false
+    },
+    "currency_code": {
+      "type": "enumeration",
+      "enum": [
+        "EUR",
+        "USD",
+        "RUB"
+      ],
+      "default": "EUR",
+      "required": true
+    },
+    "lang": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "isTest": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "string"
+    },
+    "order_created": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string",
+      "required": true
+    },
+    "phone": {
+      "type": "string"
+    },
+    "sign": {
+      "type": "string",
+      "required": true
+    },
+    "products": {
+      "type": "json",
+      "required": true
+    },
+    "ipaddress": {
+      "type": "string"
+    },
+    "order_from": {
+      "type": "string"
+    }
+  }
+}

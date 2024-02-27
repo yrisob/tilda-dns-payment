@@ -37,6 +37,20 @@
       "type": "string",
       "default": "sale-form",
       "required": true
+    },
+    "billing_address": {
+      "type": "string",
+      "required": true
+    },
+    "redirect_success_url": {
+      "type": "string"
+    },
+    "server_callback_url": {
+      "type": "string",
+      "required": true
+    },
+    "redirect_failed_url": {
+      "type": "string"
     }
   }
 }

@@ -5,16 +5,13 @@
 export default {
   postTestOrder: async (ctx) => {
     const orderData = ctx.request.body;
+    console.log('=============== Payment data ==============')
     console.log(JSON.stringify(orderData, null, 2));
+    console.log('=============== Payment header =============')
+    console.log(ctx.request.header);
+    console.log('============================================')
 
     ctx.body = 'ok';
   }
 
-  // exampleAction: async (ctx, next) => {
-  //   try {
-  //     ctx.body = 'ok';
-  //   } catch (err) {
-  //     ctx.body = err;
-  //   }
-  // }
 };

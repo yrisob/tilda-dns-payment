@@ -1,0 +1,47 @@
+=============== Payment data ==============
+{
+  "login": "DNSTest",
+  "currency_code": "EUR",
+  "lang": "en",
+  "country": "GE",
+  "isTest": "1",
+  "https://a3b2-188-120-97-86": {
+    "ngrok-free": {
+      "app/api/test-order": "https://forms.tildacdn.com/payment/custom/ps1610861/"
+    }
+  },
+  "order_id": "8660865_1145079369",
+  "description": "The Elegance (axorweb670)",
+  "amount": "3300",
+  "order_created": "2024-02-27T14:41:52+03:00",
+  "email": "yuri@airiveria.com",
+  "phone": "+995598206515",
+  "products": "[{\"itemId\":1,\"name\":\"The Elegance\",\"quantity\":1,\"price\":3300,\"amount\":3300,\"media\":\"https:\\/\\/static.tildacdn.com\\/stor3436-3938-4137-a132-326663613266\\/24514668.png\"}]",
+  "sign": "d3bf32383afa31e25a856c674037b9287f567a95"
+}
+=============== Payment header =============
+{
+  host: 'a3b2-188-120-97-86.ngrok-free.app',
+  'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
+  'content-length': '676',
+  accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,ru;q=0.8',
+  'cache-control': 'max-age=0',
+  'content-type': 'application/x-www-form-urlencoded',
+  dnt: '1',
+  origin: 'http://project8660865.tilda.ws',
+  referer: 'http://project8660865.tilda.ws/',
+  'sec-ch-ua': '"Chromium";v="121", "Not A(Brand";v="99"',
+  'sec-ch-ua-mobile': '?0',
+  'sec-ch-ua-platform': '"macOS"',
+  'sec-fetch-dest': 'document',
+  'sec-fetch-mode': 'navigate',
+  'sec-fetch-site': 'cross-site',
+  'sec-fetch-user': '?1',
+  'upgrade-insecure-requests': '1',
+  'x-forwarded-for': '188.255.234.214',
+  'x-forwarded-host': 'a3b2-188-120-97-86.ngrok-free.app',
+  'x-forwarded-proto': 'https'
+}
+============================================

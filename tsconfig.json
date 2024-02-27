@@ -1,8 +1,10 @@
 {
   "extends": "@strapi/typescript-utils/tsconfigs/server",
   "compilerOptions": {
+    "module": "commonjs",
     "outDir": "dist",
-    "rootDir": "."
+    "rootDir": ".",
+    "sourceMap": true,
   },
   "include": [
     "./",

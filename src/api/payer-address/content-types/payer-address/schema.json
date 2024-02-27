@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "payer_addresses",
+  "info": {
+    "singularName": "payer-address",
+    "pluralName": "payer-addresses",
+    "displayName": "payer_address",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "first_name": {
+      "type": "string",
+      "required": true
+    },
+    "last_name": {
+      "type": "string",
+      "required": true
+    },
+    "country_code": {
+      "type": "string",
+      "required": true
+    },
+    "city": {
+      "type": "string",
+      "required": true
+    },
+    "zip_code": {
+      "type": "string",
+      "required": true
+    },
+    "address1": {
+      "type": "string"
+    },
+    "tilda_order": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::tilda-order.tilda-order"
+    },
+    "email": {
+      "type": "string",
+      "required": true
+    },
+    "phone": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    }
+  }
+}

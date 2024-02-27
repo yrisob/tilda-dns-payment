@@ -1,0 +1,5 @@
+{
+    "python.analysis.fixAll": [],
+    "editor.formatOnSave": true,
+    "notebook.codeActionsOnSave": {}
+}

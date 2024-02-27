@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dns_payment_links",
+  "info": {
+    "singularName": "dns-payment-link",
+    "pluralName": "dns-payment-links",
+    "displayName": "dns_payment_link",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "type": {
+      "type": "string"
+    },
+    "serial_number": {
+      "type": "string"
+    },
+    "merchant_order_id": {
+      "type": "string"
+    },
+    "paynet_order_id": {
+      "type": "string",
+      "unique": true
+    },
+    "redirect_url": {
+      "type": "string"
+    },
+    "payer_address": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::payer-address.payer-address"
+    },
+    "dns_payment": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dns-payment.dns-payment",
+      "mappedBy": "dns_payment_link"
+    }
+  }
+}
