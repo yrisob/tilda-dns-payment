@@ -34,7 +34,7 @@ services:
       - dnsPaymentDB
 
   dnsPaymentDB:
-    container_name: postgres
+    container_name: dnsPaymentDB
     image: postgres
     restart: always
     env_file: .env
