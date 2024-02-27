@@ -1,0 +1,36 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  admin_airiveria:
+    name: deploy into hetzner dev server
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: set -eu
+      - run: mkdir "$HOME/.ssh"
+      - run: echo "${{ secrets.id_rsa }}" > "$HOME/.ssh/id_rsa"
+      - run: chmod 600 "$HOME/.ssh/id_rsa"
+      - name: delete .env file if exists
+        run: rm -f .env
+      - name: "Create env file"
+        run: |
+          echo "$ENV" > .env
+      - name: copy project into server
+        run: rsync -e "ssh -i $HOME/.ssh/id_rsa -vvv -o StrictHostKeyChecking=no" --archive --compress --update . root@116.203.49.31:/home/dev/dns_payment
+      - name: stop docker-compose
+        run: ssh -i $HOME/.ssh/id_rsa -t  root@116.203.49.31 "cd /home/dev/dns_payment/ && docker-compose -f docker-compose.yml down"
+      - name: docker prune
+        run: ssh -i $HOME/.ssh/id_rsa -t  root@116.203.49.31 "docker system prune -a -f"
+      - name: build docker-compose
+        run: ssh -i $HOME/.ssh/id_rsa -t  root@116.203.49.31 "cd /home/dev/dns_payment/  && docker-compose -f docker-compose.yml build"
+      - name: up docker-compose
+        run: ssh -i $HOME/.ssh/id_rsa -t  root@116.203.49.31 "cd /home/dev/dns_payment/  &&  docker-compose -f docker-compose.yml up -d"

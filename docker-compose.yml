@@ -1,0 +1,57 @@
+version: '3'
+
+services:
+  dnsPaymentStrapi:
+    container_name: dnsPaymentStrapi
+    build: .
+    image: strapi:latest
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_CLIENT: ${DATABASE_CLIENT}
+      DATABASE_HOST: strapiDB
+      DATABASE_PORT: 5432
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      APP_KEYS: ${APP_KEYS}
+      NODE_ENV: ${NODE_ENV}
+      TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT}
+    volumes:
+      - ./config:/usr/app/config
+      - ./src:/usr/app/src
+      - ./package.json:/usr/app/package.json
+      - ./yarn.lock:/usr/app/yarn.lock
+      - ./.env:/usr/app/.env
+      - ../dns_payment_uploads/public:/usr/app/public
+    ports:
+      - ${PORT}:1337
+    networks:
+      - dnsPaymentStrapi
+    depends_on:
+      - dnsPaymentDB
+
+  dnsPaymentDB:
+    container_name: postgres
+    image: postgres
+    restart: always
+    env_file: .env
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    volumes:
+      - ../db_dns_payment_data:/var/lib/postgresql/data
+    ports:
+      - ${DATABASE_PORT}:5432
+    networks:
+      - dnsPaymentStrapi
+
+volumes:
+  db_data:
+
+networks:
+  dnsPaymentStrapi:
+    driver: bridge
