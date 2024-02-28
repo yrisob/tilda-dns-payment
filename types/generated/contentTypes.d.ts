@@ -739,7 +739,7 @@ export interface ApiTildaOrderTildaOrder extends Schema.CollectionType {
   attributes: {
     order_id: Attribute.UID;
     login: Attribute.String & Attribute.Required;
-    full_name: Attribute.String;
+    name: Attribute.String;
     currency_code: Attribute.Enumeration<['EUR', 'USD', 'RUB']> & Attribute.Required & Attribute.DefaultTo<'EUR'>;
     lang: Attribute.String;
     country: Attribute.String;

@@ -19,7 +19,7 @@
       "type": "string",
       "required": true
     },
-    "full_name": {
+    "name": {
       "type": "string",
       "required": false
     },
