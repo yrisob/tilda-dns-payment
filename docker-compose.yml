@@ -3,7 +3,11 @@ version: '3'
 services:
   dnsPaymentStrapi:
     container_name: dnsPaymentStrapi
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+         PORT: ${PORT}
     image: strapi:latest
     restart: unless-stopped
     env_file: .env
@@ -26,7 +30,7 @@ services:
       - ./yarn.lock:/usr/app/yarn.lock
       - ./.env:/usr/app/.env
     ports:
-      - ${PORT}:1337
+      - ${PORT}:${PORT}
     networks:
       - dnsPaymentStrapi
     depends_on:

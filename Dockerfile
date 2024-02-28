@@ -6,6 +6,8 @@ WORKDIR /usr/app
 
 COPY ./package.json ./
 
+ARG PORT
+
 RUN npm install
 
 COPY . .
@@ -14,6 +16,6 @@ ENV NODE_ENV production
 
 RUN npm run build
 
-EXPOSE 1337
+EXPOSE ${PORT}
 
 CMD ["npm", "run" ,"start"]
