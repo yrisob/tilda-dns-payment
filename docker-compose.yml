@@ -25,7 +25,6 @@ services:
       - ./package.json:/usr/app/package.json
       - ./yarn.lock:/usr/app/yarn.lock
       - ./.env:/usr/app/.env
-      - ../dns_payment_uploads/public:/usr/app/public
     ports:
       - ${PORT}:1337
     networks:
