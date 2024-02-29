@@ -753,6 +753,7 @@ export interface ApiTildaOrderTildaOrder extends Schema.CollectionType {
     products: Attribute.JSON & Attribute.Required;
     ipaddress: Attribute.String;
     order_from: Attribute.String;
+    data: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::tilda-order.tilda-order', 'oneToOne', 'admin::user'> & Attribute.Private;

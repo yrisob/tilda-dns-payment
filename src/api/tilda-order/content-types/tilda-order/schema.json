@@ -71,6 +71,9 @@
     },
     "order_from": {
       "type": "string"
+    },
+    "data": {
+      "type": "json"
     }
   }
 }

@@ -25,10 +25,10 @@ export default factories.createCoreService('api::tilda-order.tilda-order', ({ st
     let existingOrder = await strapi.service('api::tilda-order.tilda-order').getByOrderId(orderData.order_id);
 
     if (existingOrder){
-      existingOrder = await strapi.entityService.update('api::tilda-order.tilda-order', existingOrder.id, {data: orderData});
+      existingOrder = await strapi.entityService.update('api::tilda-order.tilda-order', existingOrder.id, {data: {...orderData, data:orderData}});
 
     }else {
-      existingOrder= await strapi.entityService.create('api::tilda-order.tilda-order', {data: orderData});
+      existingOrder= await strapi.entityService.create('api::tilda-order.tilda-order', {data: {...orderData, data:orderData}});
     }
 
     return strapi.db.query('api::tilda-order.tilda-order').findOne({where: {id: existingOrder.id}});
