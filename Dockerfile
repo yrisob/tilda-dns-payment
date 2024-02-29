@@ -12,7 +12,7 @@ RUN npm install
 
 COPY . .
 
-RUN chown -R node:node /opt/axorweb
+RUN chown -R node:node ./public/uploads
 
 RUN chmod 777 -R ./public/uploads
 
