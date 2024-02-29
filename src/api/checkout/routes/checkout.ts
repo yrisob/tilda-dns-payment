@@ -30,5 +30,15 @@ export default {
        middlewares: [],
      },
     },
+    {
+      method: 'POST',
+      path: '/checkout/tilda-approve',
+      handler: 'checkout.tildaWebhookHandler',
+      config: {
+        auth: false,
+        policies: [],
+        middlewares: [],
+      },
+    }
   ],
 };

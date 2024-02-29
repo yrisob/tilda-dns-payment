@@ -35,5 +35,8 @@ export default factories.createCoreService('api::dns-payment.dns-payment',  ({ s
   getByClientOrderId: async (clientOrderId) => {
     const dnsPayments = await strapi.db.query('api::dns-payment.dns-payment').findMany({where: {client_orderid: clientOrderId}, orderBy: {id: 'desc'}});
     return dnsPayments?.[0];
-  }
+  },
+  getByOrderId: async (orderId) => {
+    return strapi.db.query('api::dns-payment.dns-payment').findOne({where: {orderid: orderId}});
+  },
 }));

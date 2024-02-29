@@ -1,0 +1,5 @@
+/**
+ * downloads service
+ */
+
+export default () => ({});

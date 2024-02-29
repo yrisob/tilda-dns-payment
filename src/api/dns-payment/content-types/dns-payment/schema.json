@@ -56,6 +56,12 @@
       "relation": "oneToOne",
       "target": "api::dns-payment-link.dns-payment-link",
       "inversedBy": "dns_payment"
+    },
+    "tilda_approve": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::tilda-approve.tilda-approve",
+      "inversedBy": "dns_payment"
     }
   }
 }

@@ -51,6 +51,9 @@
     },
     "redirect_failed_url": {
       "type": "string"
+    },
+    "tilda_notification_url": {
+      "type": "string"
     }
   }
 }

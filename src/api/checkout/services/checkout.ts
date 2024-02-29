@@ -6,7 +6,7 @@ import { errors } from '@strapi/utils';
 const { ApplicationError } = errors;
 
 export default () => ({
-  getPaymentLink:  async (payerAddressData) => {
+  getPaymentLink: async (payerAddressData) => {
     const { dnsSettings, merchantLink } = await strapi.service('api::dns-setting.dns-setting').getSettingsAndLink();
 
     //for more details see: https://doc.dns-pay.com/card_payment_API/sale-transactions.html#initiating-a-transaction-with-payment-form
@@ -54,15 +54,34 @@ export default () => ({
       'redirect-url': redirect_url,
     } = paymentLinkResponse;
 
-    return strapi
-      .service('api::dns-payment-link.dns-payment-link')
-      .save({
-        type,
-        serial_number,
-        merchant_order_id,
-        paynet_order_id,
-        redirect_url,
-        payer_address: { id: payerAddressData.id },
-      });;
-  }
+    return strapi.service('api::dns-payment-link.dns-payment-link').save({
+      type,
+      serial_number,
+      merchant_order_id,
+      paynet_order_id,
+      redirect_url,
+      payer_address: { id: payerAddressData.id },
+    });
+  },
+  tildaApprove: async (dnsPayment) => {
+    const { data: orderData } = await strapi
+      .service('api::tilda-order.tilda-order')
+      .getByOrderId(dnsPayment.client_orderid);
+
+    const { dnsSettings } = await strapi.service('api::dns-setting.dns-setting').getSettingsAndLink();
+
+    const { tilda_notification_url: tildaNotificationUrl } = dnsSettings;
+
+    const response = await axios.post(tildaNotificationUrl, {
+      payment_Id: dnsPayment.orderid,
+      success: true,
+      ...orderData,
+    });
+
+    console.log('=============== Tilda approve response ==============');
+    console.log(response.data);
+    console.log('=====================================================');
+
+    return response;
+  },
 });

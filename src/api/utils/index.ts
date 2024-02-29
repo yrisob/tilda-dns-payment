@@ -1,4 +1,5 @@
 import crypto from 'crypto';
+export * from './mail';
 
 export function getSha1(input: string): string {
   var shaSum = crypto.createHash('sha1');
@@ -33,4 +34,19 @@ export function getCallbackSignature({ status, orderid, merchant_order, merchant
 
 export function getTildaSign(tildaSecret: string, { email, phone, order_id, login }): string {
   return getSha1(`${tildaSecret}|${email}|${phone}|${order_id}|${login}`);
+}
+
+export function encryptJson(secret: string, json: object): string {
+  const cipher = crypto.createCipher('aes192', secret);
+
+  let encrypted = cipher.update(JSON.stringify(json), 'utf8', 'hex');
+  encrypted += cipher.final('hex');
+  return encrypted
+}
+
+export function decryptJson(secret: string, encrypted: string): Record<string, any>{
+  const decipher = crypto.createDecipher('aes192', secret);
+  let decrypted = decipher.update(encrypted, 'hex', 'utf8');
+  decrypted += decipher.final('utf8');
+  return JSON.parse(decrypted)
 }

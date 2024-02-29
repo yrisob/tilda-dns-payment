@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tilda_approves",
+  "info": {
+    "singularName": "tilda-approve",
+    "pluralName": "tilda-approves",
+    "displayName": "tilda_approve",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "formid": {
+      "type": "string"
+    },
+    "formname": {
+      "type": "string"
+    },
+    "data": {
+      "type": "json"
+    },
+    "dns_payment": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dns-payment.dns-payment",
+      "inversedBy": "tilda_approve"
+    }
+  }
+}

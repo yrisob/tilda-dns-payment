@@ -1,5 +1,5 @@
 import * as qs from 'qs';
-import { getCallbackSignature, getSha1 } from '../../utils';
+import { encryptJson, getCallbackSignature, getPersonalEmail } from '../../utils';
 
 export default {
   startCheckout: async (ctx) => {
@@ -7,12 +7,12 @@ export default {
     const ipaddress = ctx.request.header['x-forwarded-for'];
     const order_from = ctx.request.header['origin'];
 
-    const tildaOrder = {...orderData, ipaddress, order_from};
+    const tildaOrder = { ...orderData, ipaddress, order_from };
     const tildaOrderData = await strapi.service('api::tilda-order.tilda-order').save(tildaOrder);
 
     const redirectUrl = await strapi.service('api::dns-setting.dns-setting').getBillingSettings();
-    ctx.redirect(`${redirectUrl}/${tildaOrderData.order_id}`)
-    return
+    ctx.redirect(`${redirectUrl}/${tildaOrderData.order_id}`);
+    return;
   },
   getPaymentLink: async (ctx) => {
     const payerAddressData = ctx.request.body;
@@ -52,6 +52,52 @@ export default {
       ctx.throw(404, 'Payment link not found');
     }
 
-    return strapi.service('api::dns-payment.dns-payment').save(checkoutData, { id: existingPaymentLink.id });
+    const dnsPayment = await strapi
+      .service('api::dns-payment.dns-payment')
+      .save(checkoutData, { id: existingPaymentLink.id });
+
+    if (dnsPayment.status === 'approved') {
+      strapi.service('api::checkout.checkout').tildaApprove(dnsPayment);
+    }
+
+    return dnsPayment;
+  },
+  tildaWebhookHandler: async (ctx) => {
+    const request = ctx.request.body;
+    const { name, email, payment } = request;
+
+    console.log('=============== Tilda webhook data ==============');
+    console.log(JSON.stringify(ctx.request.body, null, 2));
+    console.log('================================================');
+
+    if (!name || !email || !payment) {
+      return { success: true };
+    }
+
+    strapi.service('api::tilda-approve.tilda-approve').saveWithDnsPayment(request);
+
+    const { salt: secret } = strapi.config.get<Record<string, string>>('admin.apiToken');
+
+    const { dnsSettings } = await strapi.service('api::dns-setting.dns-setting').getSettingsAndLink();
+    const backUrl = dnsSettings.server_callback_url;
+
+    const products = payment?.products?.map((item) => ({
+      name: item.name,
+      link: `${backUrl.substring(0,backUrl.indexOf('/api'))}/api/downloads/${encryptJson(secret, { productName: item.name, fileName: item.sku.replace('axorweb', '') })}`,
+    }));
+
+    strapi
+      .plugin('email')
+      .service('email')
+      .send({
+        to: email,
+        from: 'dontreplay@axorweb.com',
+        replyTo: 'dontreplay@axorweb.com',
+        subject: `Your order: ${payment.orderid}`,
+        text: `Thank you for your payment, ${name}!`,
+        html: getPersonalEmail(name, products),
+      });
+
+    return ctx.send({ status: 'ok' });
   },
 };

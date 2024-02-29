@@ -624,6 +624,7 @@ export interface ApiDnsPaymentDnsPayment extends Schema.CollectionType {
       'oneToOne',
       'api::dns-payment-link.dns-payment-link'
     >;
+    tilda_approve: Attribute.Relation<'api::dns-payment.dns-payment', 'oneToOne', 'api::tilda-approve.tilda-approve'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::dns-payment.dns-payment', 'oneToOne', 'admin::user'> & Attribute.Private;
@@ -688,6 +689,7 @@ export interface ApiDnsSettingDnsSetting extends Schema.SingleType {
     redirect_success_url: Attribute.String;
     server_callback_url: Attribute.String & Attribute.Required;
     redirect_failed_url: Attribute.String;
+    tilda_notification_url: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -722,6 +724,32 @@ export interface ApiPayerAddressPayerAddress extends Schema.CollectionType {
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::payer-address.payer-address', 'oneToOne', 'admin::user'> & Attribute.Private;
     updatedBy: Attribute.Relation<'api::payer-address.payer-address', 'oneToOne', 'admin::user'> & Attribute.Private;
+  };
+}
+
+export interface ApiTildaApproveTildaApprove extends Schema.CollectionType {
+  collectionName: 'tilda_approves';
+  info: {
+    singularName: 'tilda-approve';
+    pluralName: 'tilda-approves';
+    displayName: 'tilda_approve';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String;
+    email: Attribute.String;
+    phone: Attribute.String;
+    formid: Attribute.String;
+    formname: Attribute.String;
+    data: Attribute.JSON;
+    dns_payment: Attribute.Relation<'api::tilda-approve.tilda-approve', 'oneToOne', 'api::dns-payment.dns-payment'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::tilda-approve.tilda-approve', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'api::tilda-approve.tilda-approve', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
@@ -783,6 +811,7 @@ declare module '@strapi/types' {
       'api::dns-payment-link.dns-payment-link': ApiDnsPaymentLinkDnsPaymentLink;
       'api::dns-setting.dns-setting': ApiDnsSettingDnsSetting;
       'api::payer-address.payer-address': ApiPayerAddressPayerAddress;
+      'api::tilda-approve.tilda-approve': ApiTildaApproveTildaApprove;
       'api::tilda-order.tilda-order': ApiTildaOrderTildaOrder;
     }
   }
