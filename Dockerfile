@@ -10,6 +10,8 @@ ARG PORT
 
 RUN npm install
 
+COPY ../axorweb_templates/* ./public/uploads/
+
 COPY . .
 
 ENV NODE_ENV production

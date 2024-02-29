@@ -19,8 +19,10 @@ export default {
       return ctx.notFound('file not found');
     }
 
+    const baseUrl = dnsSettings.server_callback_url;
+
     const fileUrl =
-      dnsSettings.server_callback_url.substring(0, dnsSettings.server_callback_url.indexOf('/api')) +
+      baseUrl.substring(0, baseUrl.indexOf('/api')) +
       `/uploads/${fileName}.zip`;
 
     const response = await new Promise<any>((resolve, reject) => {
