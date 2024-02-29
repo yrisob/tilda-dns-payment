@@ -12,6 +12,10 @@ RUN npm install
 
 COPY . .
 
+RUN chown -R node:node /opt/axorweb
+
+RUN chmod 777 -R ./public/uploads
+
 ENV NODE_ENV production
 
 RUN npm run build
