@@ -29,6 +29,7 @@ services:
       - ./package.json:/usr/app/package.json
       - ./yarn.lock:/usr/app/yarn.lock
       - ./.env:/usr/app/.env
+      - /opt/axorweb/:/usr/app/public
     ports:
       - ${PORT}:${PORT}
     networks:

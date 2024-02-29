@@ -12,8 +12,6 @@ RUN npm install
 
 COPY . .
 
-COPY ../axorweb_templates/* ./public/uploads/
-
 ENV NODE_ENV production
 
 RUN npm run build
