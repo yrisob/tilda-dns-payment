@@ -91,8 +91,8 @@ export default {
       .service('email')
       .send({
         to: email,
-        from: 'dontreplay@axorweb.com',
-        replyTo: 'dontreplay@axorweb.com',
+        from: 'Support@axorweb.com',
+        replyTo: 'Support@axorweb.com',
         subject: `Your order: ${payment.orderid}`,
         text: `Thank you for your payment, ${name}!`,
         html: getPersonalEmail(name, products),

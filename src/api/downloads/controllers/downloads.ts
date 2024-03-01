@@ -23,7 +23,7 @@ export default {
 
     const fileUrl =
       baseUrl.substring(0, baseUrl.indexOf('/api')) +
-      `/uploads/${fileName}.zip`;
+      `/templates/${fileName}.zip`;
 
     const response = await new Promise<any>((resolve, reject) => {
       request(fileUrl, (error, response, body) => {
