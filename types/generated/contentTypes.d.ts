@@ -690,6 +690,7 @@ export interface ApiDnsSettingDnsSetting extends Schema.SingleType {
     server_callback_url: Attribute.String & Attribute.Required;
     redirect_failed_url: Attribute.String;
     tilda_notification_url: Attribute.String;
+    account_url: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -724,6 +725,26 @@ export interface ApiPayerAddressPayerAddress extends Schema.CollectionType {
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::payer-address.payer-address', 'oneToOne', 'admin::user'> & Attribute.Private;
     updatedBy: Attribute.Relation<'api::payer-address.payer-address', 'oneToOne', 'admin::user'> & Attribute.Private;
+  };
+}
+
+export interface ApiSessionSession extends Schema.CollectionType {
+  collectionName: 'sessions';
+  info: {
+    singularName: 'session';
+    pluralName: 'sessions';
+    displayName: 'session';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    email: Attribute.String & Attribute.Required;
+    access_code: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::session.session', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'api::session.session', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
@@ -811,6 +832,7 @@ declare module '@strapi/types' {
       'api::dns-payment-link.dns-payment-link': ApiDnsPaymentLinkDnsPaymentLink;
       'api::dns-setting.dns-setting': ApiDnsSettingDnsSetting;
       'api::payer-address.payer-address': ApiPayerAddressPayerAddress;
+      'api::session.session': ApiSessionSession;
       'api::tilda-approve.tilda-approve': ApiTildaApproveTildaApprove;
       'api::tilda-order.tilda-order': ApiTildaOrderTildaOrder;
     }

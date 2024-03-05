@@ -22,4 +22,7 @@ export default factories.createCoreService('api::tilda-approve.tilda-approve', (
       },
     });
   },
+  getApprovedOrdersByEmail: async (email: string) => {
+    return strapi.db.query('api::tilda-approve.tilda-approve').findMany({ where: { email },orderBy: { createdAt: 'desc' } });
+  }
 }));

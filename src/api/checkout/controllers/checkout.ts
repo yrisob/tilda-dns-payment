@@ -1,5 +1,5 @@
 import * as qs from 'qs';
-import { encryptJson, getCallbackSignature, getPersonalEmail } from '../../utils';
+import { encryptJson, getCallbackSignature, getPersonalEmail, transformProduct } from '../../utils';
 
 export default {
   startCheckout: async (ctx) => {
@@ -81,10 +81,7 @@ export default {
     const { dnsSettings } = await strapi.service('api::dns-setting.dns-setting').getSettingsAndLink();
     const backUrl = dnsSettings.server_callback_url;
 
-    const products = payment?.products?.map((item) => ({
-      name: item.name,
-      link: `${backUrl.substring(0,backUrl.indexOf('/api'))}/api/downloads/${encryptJson(secret, { productName: item.name, fileName: item.sku.replace('axorweb', '') })}`,
-    }));
+    const products = payment?.products?.map((item) => transformProduct(item, backUrl, secret));
 
     strapi
       .plugin('email')

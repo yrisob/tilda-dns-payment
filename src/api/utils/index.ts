@@ -50,3 +50,12 @@ export function decryptJson(secret: string, encrypted: string): Record<string, a
   decrypted += decipher.final('utf8');
   return JSON.parse(decrypted)
 }
+
+
+export function transformProduct(product: any, apiUrl: string, secret: string): any {
+  return {
+    sku: product.sku,
+    name: product.name,
+    link: `${apiUrl.substring(0,apiUrl.indexOf('/api'))}/api/downloads/${encryptJson(secret, { productName: product.name, fileName: product.sku.replace('axorweb', '') })}`,
+  }
+}

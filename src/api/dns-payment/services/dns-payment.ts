@@ -39,4 +39,7 @@ export default factories.createCoreService('api::dns-payment.dns-payment',  ({ s
   getByOrderId: async (orderId) => {
     return strapi.db.query('api::dns-payment.dns-payment').findOne({where: {orderid: orderId}});
   },
+  getApprovedOrdersByEmail: async (email) => {
+    return strapi.db.query('api::dns-payment.dns-payment').findMany({where: {email: email, error_message: null}});
+  },
 }));

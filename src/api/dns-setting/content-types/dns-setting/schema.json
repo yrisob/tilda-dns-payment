@@ -54,6 +54,9 @@
     },
     "tilda_notification_url": {
       "type": "string"
+    },
+    "account_url": {
+      "type": "string"
     }
   }
 }
