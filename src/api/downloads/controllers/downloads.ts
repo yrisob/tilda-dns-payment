@@ -37,7 +37,7 @@ export default {
     }
 
     ctx.set({
-      'Content-Type': response.headers['content-type'],
+      'Content-Type': 'application/zip',
       'Content-Disposition': `attachment; filename=${productName}.zip`,
     });
 
