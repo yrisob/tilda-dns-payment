@@ -36,10 +36,10 @@ export default {
     //   ctx.throw(404, 'File not found or inaccessible'); // Handle error
     // }
 
-    // ctx.set({
-    //   'Content-Type': 'application/zip',
-    //   'Content-Disposition': `attachment; filename=${productName}.zip`,
-    // });
+    ctx.set({
+      'Content-Type': 'application/zip',
+      'Content-Disposition': `attachment; filename=${productName}.zip`,
+    });
 
     //ctx.body = response.body;
     ctx.redirect(fileUrl);
