@@ -25,22 +25,23 @@ export default {
       baseUrl.substring(0, baseUrl.indexOf('/api')) +
       `/templates/${fileName}.zip`;
 
-    const response = await new Promise<any>((resolve, reject) => {
-      request(fileUrl, (error, response, body) => {
-        if (error) return reject(error);
-        return resolve(response);
-      });
-    });
+    // const response = await new Promise<any>((resolve, reject) => {
+    //   request(fileUrl, (error, response, body) => {
+    //     if (error) return reject(error);
+    //     return resolve(response);
+    //   });
+    // });
 
-    if (response.statusCode !== 200) {
-      ctx.throw(404, 'File not found or inaccessible'); // Handle error
-    }
+    // if (response.statusCode !== 200) {
+    //   ctx.throw(404, 'File not found or inaccessible'); // Handle error
+    // }
 
-    ctx.set({
-      'Content-Type': 'application/zip',
-      'Content-Disposition': `attachment; filename=${productName}.zip`,
-    });
+    // ctx.set({
+    //   'Content-Type': 'application/zip',
+    //   'Content-Disposition': `attachment; filename=${productName}.zip`,
+    // });
 
-    ctx.body = response.body;
+    //ctx.body = response.body;
+    ctx.redirect(fileUrl);
   },
 };
