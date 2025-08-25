@@ -9,7 +9,7 @@ COPY ./package-lock.json ./
 
 ARG PORT
 
-RUN npm ci --ignore-scripts
+RUN npm ci
 
 COPY . .
 
