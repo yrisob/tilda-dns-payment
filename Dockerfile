@@ -8,7 +8,7 @@ COPY ./package.json ./
 
 ARG PORT
 
-RUN npm install
+RUN npm ci --ignore-scripts
 
 COPY . .
 
